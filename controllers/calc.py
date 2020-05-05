@@ -19,13 +19,15 @@ def estimate_pi(event, context):
 
     dist = (x**2) + (y**2)
 
+    total_coords = len(coords_x_in_circle) + len(coords_x_outside_circle)
+
     if (dist <= 1):
       in_circle += 1
-      if (len(coords_x_in_circle) < 10000):
+      if (total_coords < 10000):
         coords_x_in_circle.append(x)
         coords_y_in_circle.append(y)
     else:
-      if (len(coords_x_outside_circle) < 10000):
+      if (total_coords < 10000):
         coords_x_outside_circle.append(x)
         coords_y_outside_circle.append(y)
     
