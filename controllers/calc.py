@@ -1,51 +1,42 @@
 import json
+import random
 
 
 def estimate_pi(event, context):
-    body = {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "input": event
-    }
+  iterations = json.loads(event["body"])["iterations"]
 
-    print(event)
+  x_in_circle = []
+  y_in_circle = []
+  x_outside_circle = []
+  y_outside_circle = []
 
-    response = {
-        "statusCode": 200,
-        "body": json.dumps(body)
-    }
-
-    return response
-
-    # Use this code if you don't use the http event with the LAMBDA-PROXY
-    # integration
-    """
-    return {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "event": event
-    }
-    """
-
-"""
-import random
-import math
-
-def calc_pi(n):
-  in_circle = 0
-  total = 0
-
-  for i in range(n):
+  for i in range(iterations):
     x = random.uniform(0, 1)
     y = random.uniform(0, 1)
 
-    dist = math.sqrt((x**2) + (y**2))
+    dist = (x**2) + (y**2)
 
     if (dist <= 1):
-      in_circle += 1
+      x_in_circle.append(x)
+      y_in_circle.append(y)
+    else:
+      x_outside_circle.append(x)
+      y_outside_circle.append(y)
 
-    total += 1
+  pi = 4 * len(x_in_circle)/((len(x_in_circle)) + len(x_outside_circle))
 
-  return 4 * in_circle/total
+  body = {
+    "x_in_circle": x_in_circle,
+    "y_in_circle": y_in_circle,
+    "x_outside_circle": x_outside_circle,
+    "y_outside_circle": y_outside_circle,
+    "pi": pi
+  }
 
-iterations = int(input("Cuantas veces quieres iterar? "))
-print(calc_pi(iterations))
-"""
+  response = {
+    "statusCode": 200,
+    "body": json.dumps(body)
+  }
+
+  return response
+
