@@ -21,11 +21,11 @@ def estimate_pi(event, context):
 
     if (dist <= 1):
       in_circle += 1
-      if (len(coords_x_in_circle) < 150000):
+      if (len(coords_x_in_circle) < 10000):
         coords_x_in_circle.append(x)
         coords_y_in_circle.append(y)
     else:
-      if (len(coords_x_outside_circle) < 150000):
+      if (len(coords_x_outside_circle) < 10000):
         coords_x_outside_circle.append(x)
         coords_y_outside_circle.append(y)
     
@@ -33,11 +33,17 @@ def estimate_pi(event, context):
 
   pi = 4 * in_circle/total
 
+  print(sys.getsizeof(coords_x_in_circle))
+  print(sys.getsizeof(coords_y_in_circle))
+  print(sys.getsizeof(coords_x_outside_circle))
+  print(sys.getsizeof(coords_y_outside_circle))
+  print(sys.getsizeof(pi))
+
   body = {
-    "x_in_circle": coords_x_in_circle,
-    "y_in_circle": coords_y_in_circle,
-    "x_outside_circle": coords_x_outside_circle,
-    "y_outside_circle": coords_y_outside_circle,
+    #"x_in_circle": coords_x_in_circle,
+    #"y_in_circle": coords_y_in_circle,
+    #"x_outside_circle": coords_x_outside_circle,
+    #"y_outside_circle": coords_y_outside_circle,
     "pi": pi
   }
 
