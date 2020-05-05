@@ -40,10 +40,10 @@ def estimate_pi(event, context):
   print(sys.getsizeof(pi))
 
   body = {
-    #"x_in_circle": coords_x_in_circle,
-    #"y_in_circle": coords_y_in_circle,
-    #"x_outside_circle": coords_x_outside_circle,
-    #"y_outside_circle": coords_y_outside_circle,
+    "x_in_circle": coords_x_in_circle,
+    "y_in_circle": coords_y_in_circle,
+    "x_outside_circle": coords_x_outside_circle,
+    "y_outside_circle": coords_y_outside_circle,
     "pi": pi
   }
 
