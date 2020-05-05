@@ -1,11 +1,13 @@
 import json
 
 
-def hello(event, context):
+def estimate_pi(event, context):
     body = {
         "message": "Go Serverless v1.0! Your function executed successfully!",
         "input": event
     }
+
+    print(event)
 
     response = {
         "statusCode": 200,
