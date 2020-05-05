@@ -1,5 +1,5 @@
 {
-  "body": "{\n    \"iterations\": 100000\n}",
+  "body": "{\n    \"iterations\": 500000\n}",
   "resource": "/{proxy+}",
   "path": "/path/to/resource",
   "httpMethod": "POST",

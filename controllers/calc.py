@@ -1,14 +1,17 @@
 import json
 import random
+import sys
 
 
 def estimate_pi(event, context):
   iterations = json.loads(event["body"])["iterations"]
-
-  x_in_circle = []
-  y_in_circle = []
-  x_outside_circle = []
-  y_outside_circle = []
+  
+  in_circle = 0
+  total = 0
+  coords_x_in_circle = []
+  coords_y_in_circle = []
+  coords_x_outside_circle = []
+  coords_y_outside_circle = []
 
   for i in range(iterations):
     x = random.uniform(0, 1)
@@ -17,19 +20,24 @@ def estimate_pi(event, context):
     dist = (x**2) + (y**2)
 
     if (dist <= 1):
-      x_in_circle.append(x)
-      y_in_circle.append(y)
+      in_circle += 1
+      if (len(coords_x_in_circle) < 150000):
+        coords_x_in_circle.append(x)
+        coords_y_in_circle.append(y)
     else:
-      x_outside_circle.append(x)
-      y_outside_circle.append(y)
+      if (len(coords_x_outside_circle) < 150000):
+        coords_x_outside_circle.append(x)
+        coords_y_outside_circle.append(y)
+    
+    total += 1
 
-  pi = 4 * len(x_in_circle)/((len(x_in_circle)) + len(x_outside_circle))
+  pi = 4 * in_circle/total
 
   body = {
-    "x_in_circle": x_in_circle,
-    "y_in_circle": y_in_circle,
-    "x_outside_circle": x_outside_circle,
-    "y_outside_circle": y_outside_circle,
+    "x_in_circle": coords_x_in_circle,
+    "y_in_circle": coords_y_in_circle,
+    "x_outside_circle": coords_x_outside_circle,
+    "y_outside_circle": coords_y_outside_circle,
     "pi": pi
   }
 
@@ -44,4 +52,5 @@ def estimate_pi(event, context):
   }
 
   return response
+  
 
