@@ -24,3 +24,28 @@ def estimate_pi(event, context):
         "event": event
     }
     """
+
+"""
+import random
+import math
+
+def calc_pi(n):
+  in_circle = 0
+  total = 0
+
+  for i in range(n):
+    x = random.uniform(0, 1)
+    y = random.uniform(0, 1)
+
+    dist = math.sqrt((x**2) + (y**2))
+
+    if (dist <= 1):
+      in_circle += 1
+
+    total += 1
+
+  return 4 * in_circle/total
+
+iterations = int(input("Cuantas veces quieres iterar? "))
+print(calc_pi(iterations))
+"""
