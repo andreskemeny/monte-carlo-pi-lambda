@@ -60,13 +60,11 @@ provider:
 functions:
   estimate_pi:
     handler: controllers/calc.estimate_pi
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
     events:
       - http:
           path: calc
           method: post
+          cors: true
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
